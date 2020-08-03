@@ -3,7 +3,12 @@ import React, { useReducer } from "react";
 import authContext from "./authContext";
 import authReducer from "./authReducer";
 
-import { AUTHENTICATED_USER, REGISTER_SUCCESS } from "../../types";
+import {
+  AUTHENTICATED_USER,
+  REGISTER_SUCCESS,
+  REGISTER_ERROR,
+  CLEAN_ALERT,
+} from "../../types";
 
 import clientAxios from "../../config/axios";
 
@@ -29,8 +34,18 @@ const AuthState = ({ children }) => {
         payload: response.data.msg,
       });
     } catch (error) {
-      console.log(error);
+      disptach({
+        type: REGISTER_ERROR,
+        payload: error.response.data.msg,
+      });
     }
+
+    // Clean alert after 3 seconds
+    setTimeout(() => {
+      disptach({
+        type: CLEAN_ALERT,
+      });
+    }, 3000);
   };
 
   // Authenticated user

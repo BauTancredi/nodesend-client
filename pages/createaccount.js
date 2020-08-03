@@ -1,15 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import authContext from "../context/auth/authContext";
 import Layout from "../components/Layout";
-import AuthState from "../context/auth/authState";
+import Alert from "../components/Alert";
 
 const CreateAccount = () => {
   // Access state
   const AuthContext = useContext(authContext);
-  const { registerUser } = AuthContext;
+  const { registerUser, message } = AuthContext;
 
   // Form validarion with formik and yup
   const formik = useFormik({
@@ -38,6 +38,8 @@ const CreateAccount = () => {
         <h2 className="text-4xl font-sans font-bold text-gray-800 text-center my-4">
           Create Account
         </h2>
+
+        {message && <Alert />}
 
         <div className="flex justify-center mt-5">
           <div className="w-full max-w-lg">

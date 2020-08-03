@@ -1,11 +1,11 @@
-import { AUTHENTICATED_USER } from "../../types";
+import { REGISTER_SUCCESS } from "../../types";
 
 export default (state, action) => {
   switch (action.type) {
-    case AUTHENTICATED_USER:
+    case REGISTER_SUCCESS:
       return {
         ...state,
-        user: action.payload,
+        message: action.payload,
       };
     default:
       return state;

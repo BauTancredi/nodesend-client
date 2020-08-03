@@ -3,6 +3,8 @@ import React, { useReducer } from "react";
 import authContext from "./authContext";
 import authReducer from "./authReducer";
 
+import { AUTHENTICATED_USER } from "../../types";
+
 const AuthState = ({ children }) => {
   // Initial State
   const initialState = {
@@ -15,6 +17,14 @@ const AuthState = ({ children }) => {
   // Define reducer
   const [state, disptach] = useReducer(authReducer, initialState);
 
+  // Authenticated user
+  const authenticatedUser = (name) => {
+    disptach({
+      type: AUTHENTICATED_USER,
+      payload: name,
+    });
+  };
+
   return (
     <authContext.Provider
       value={{
@@ -22,6 +32,7 @@ const AuthState = ({ children }) => {
         authenticated: state.authenticated,
         user: state.user,
         message: state.message,
+        authenticatedUser,
       }}
     >
       {children}

@@ -9,7 +9,7 @@ import AuthState from "../context/auth/authState";
 const CreateAccount = () => {
   // Access state
   const AuthContext = useContext(authContext);
-  const { authenticatedUser } = AuthContext;
+  const { registerUser } = AuthContext;
 
   // Form validarion with formik and yup
   const formik = useFormik({
@@ -27,8 +27,8 @@ const CreateAccount = () => {
         .required("The password cannot be empty")
         .min(6, "The password must be at least 6 characters"),
     }),
-    onSubmit: () => {
-      console.log("Sending Form");
+    onSubmit: (values) => {
+      registerUser(values);
     },
   });
 

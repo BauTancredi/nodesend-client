@@ -17,6 +17,11 @@ const AuthState = ({ children }) => {
   // Define reducer
   const [state, disptach] = useReducer(authReducer, initialState);
 
+  // Register user
+  const registerUser = (data) => {
+    console.log("From registerUser");
+  };
+
   // Authenticated user
   const authenticatedUser = (name) => {
     disptach({
@@ -32,6 +37,7 @@ const AuthState = ({ children }) => {
         authenticated: state.authenticated,
         user: state.user,
         message: state.message,
+        registerUser,
         authenticatedUser,
       }}
     >

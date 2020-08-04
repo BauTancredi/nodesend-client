@@ -16,6 +16,13 @@ export default (state, action) => {
         ...state,
         message: action.payload,
       };
+    case LOGIN_SUCCESS:
+      localStorage.setItem("token", action.payload);
+      return {
+        ...state,
+        token: action.payload,
+        authenticated: true,
+      };
 
     case CLEAN_ALERT:
       return {

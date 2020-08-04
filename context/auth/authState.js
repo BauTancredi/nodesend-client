@@ -17,7 +17,7 @@ import clientAxios from "../../config/axios";
 const AuthState = ({ children }) => {
   // Initial State
   const initialState = {
-    token: "",
+    token: typeof window !== "undefined" ? localStorage.getItem("token") : null,
     authenticated: null,
     user: null,
     message: null,
@@ -54,7 +54,11 @@ const AuthState = ({ children }) => {
   const login = async (data) => {
     try {
       const response = await clientAxios.post("/api/auth", data);
-      console.log(response);
+
+      disptach({
+        type: LOGIN_SUCCESS,
+        payload: response.data.token,
+      });
     } catch (error) {
       disptach({
         type: LOGIN_ERROR,

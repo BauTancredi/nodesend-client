@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 
 import authContext from "../context/auth/authContext";
 import Layout from "../components/Layout";
@@ -9,7 +10,16 @@ import Alert from "../components/Alert";
 const Login = () => {
   // Access state
   const AuthContext = useContext(authContext);
-  const { login, message } = AuthContext;
+  const { login, message, authenticated } = AuthContext;
+
+  // next router
+  const router = useRouter();
+
+  useEffect(() => {
+    if (authenticated) {
+      router.push("/");
+    }
+  }, [authenticated]);
 
   // Form validarion with formik and yup
   const formik = useFormik({

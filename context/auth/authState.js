@@ -13,6 +13,7 @@ import {
 } from "../../types";
 
 import clientAxios from "../../config/axios";
+import tokenAuth from "../../config/tokenAuth";
 
 const AuthState = ({ children }) => {
   // Initial State
@@ -75,11 +76,18 @@ const AuthState = ({ children }) => {
   };
 
   // Authenticated user
-  const authenticatedUser = (name) => {
-    disptach({
-      type: AUTHENTICATED_USER,
-      payload: name,
-    });
+  const authenticatedUser = async () => {
+    const token = localStorage.getItem("token");
+    if (token) tokenAuth(token);
+
+    try {
+      const response = await clientAxios.get("/api/auth");
+
+      disptach({
+        type: AUTHENTICATED_USER,
+        payload: response.data.user,
+      });
+    } catch (error) {}
   };
 
   return (

@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Layout from "../components/Layout";
 
+import authContext from "../context/auth/authContext";
+
 const Index = () => {
+  // Access state
+  const AuthContext = useContext(authContext);
+  const { authenticatedUser, token } = AuthContext;
+
+  useEffect(() => {
+    authenticatedUser();
+  }, []);
+
   return (
     <Layout>
       <h1>Index</h1>

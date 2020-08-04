@@ -5,6 +5,7 @@ import {
   CLEAN_ALERT,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from "../../types";
 
 export default (state, action) => {
@@ -33,6 +34,15 @@ export default (state, action) => {
       return {
         ...state,
         message: null,
+      };
+
+    case LOGOUT:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        user: null,
+        token: null,
+        authenticated: null,
       };
     default:
       return state;

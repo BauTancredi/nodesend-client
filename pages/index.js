@@ -6,7 +6,7 @@ import authContext from "../context/auth/authContext";
 const Index = () => {
   // Access state
   const AuthContext = useContext(authContext);
-  const { authenticatedUser, token } = AuthContext;
+  const { authenticatedUser } = AuthContext;
 
   useEffect(() => {
     authenticatedUser();

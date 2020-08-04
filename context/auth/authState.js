@@ -10,6 +10,7 @@ import {
   CLEAN_ALERT,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from "../../types";
 
 import clientAxios from "../../config/axios";
@@ -87,7 +88,18 @@ const AuthState = ({ children }) => {
         type: AUTHENTICATED_USER,
         payload: response.data.user,
       });
-    } catch (error) {}
+    } catch (error) {
+      disptach({
+        type: LOGIN_ERROR,
+        payload: error.response.data.msg,
+      });
+    }
+  };
+
+  const logout = () => {
+    disptach({
+      type: LOGOUT,
+    });
   };
 
   return (
@@ -100,6 +112,7 @@ const AuthState = ({ children }) => {
         registerUser,
         authenticatedUser,
         login,
+        logout,
       }}
     >
       {children}

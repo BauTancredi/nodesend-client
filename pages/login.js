@@ -4,6 +4,7 @@ import * as Yup from "yup";
 
 import authContext from "../context/auth/authContext";
 import Layout from "../components/Layout";
+import Alert from "../components/Alert";
 
 const Login = () => {
   // Access state
@@ -32,6 +33,8 @@ const Login = () => {
         <h2 className="text-4xl font-sans font-bold text-gray-800 text-center my-4">
           Login
         </h2>
+
+        {message && <Alert />}
 
         <div className="flex justify-center mt-5">
           <div className="w-full max-w-lg">

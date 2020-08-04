@@ -8,6 +8,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_ERROR,
   CLEAN_ALERT,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
 } from "../../types";
 
 import clientAxios from "../../config/axios";
@@ -49,8 +51,23 @@ const AuthState = ({ children }) => {
   };
 
   // Login
-  const login = (data) => {
-    console.log(data);
+  const login = async (data) => {
+    try {
+      const response = await clientAxios.post("/api/auth", data);
+      console.log(response);
+    } catch (error) {
+      disptach({
+        type: LOGIN_ERROR,
+        payload: error.response.data.msg,
+      });
+    }
+
+    // Clean alert after 3 seconds
+    setTimeout(() => {
+      disptach({
+        type: CLEAN_ALERT,
+      });
+    }, 3000);
   };
 
   // Authenticated user

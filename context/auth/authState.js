@@ -48,6 +48,11 @@ const AuthState = ({ children }) => {
     }, 3000);
   };
 
+  // Login
+  const login = (data) => {
+    console.log(data);
+  };
+
   // Authenticated user
   const authenticatedUser = (name) => {
     disptach({
@@ -65,6 +70,7 @@ const AuthState = ({ children }) => {
         message: state.message,
         registerUser,
         authenticatedUser,
+        login,
       }}
     >
       {children}

@@ -1,10 +1,17 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import clientAxios from "../config/axios";
+import appContext from "../context/app/appContext";
+import AppState from "../context/app/appState";
 
 const Dropzone = () => {
+  const AppContext = useContext(appContext);
+  const { showAlert } = AppContext;
+
   const onDropRejected = () => {
-    console.log("Could not upload");
+    showAlert(
+      "Could not upload. The limit is 1MB. Obtain an account to increase the limit"
+    );
   };
 
   const onDropAccepted = useCallback(async (acceptedFiles) => {

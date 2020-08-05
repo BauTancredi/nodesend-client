@@ -12,7 +12,33 @@ import {
 } from "../../types";
 
 const AppState = ({ children }) => {
-  return <appContext.Provider value={{}}>{children}</appContext.Provider>;
+  const initialState = {
+    message_file: null,
+  };
+
+  const [state, dispatch] = useReducer(appReducer, initialState);
+
+  const showAlert = (msg) => {
+    dispatch({
+      type: SHOW_ALERT,
+      payload: msg,
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: CLEAN_ALERT,
+        payload: msg,
+      });
+    }, 3000);
+  };
+
+  return (
+    <appContext.Provider
+      value={{ message_file: state.message_file, showAlert }}
+    >
+      {children}
+    </appContext.Provider>
+  );
 };
 
 export default AppState;

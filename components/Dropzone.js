@@ -19,8 +19,21 @@ const Dropzone = () => {
     acceptedFiles,
   } = useDropzone({ onDrop });
 
+  const files = acceptedFiles.map((file) => (
+    <li
+      className="bg-white flex-1 p-3 mb-4 shadow-lg rounded"
+      key={file.lastModified}
+    >
+      <p className="font-bold text-xl">{file.path}</p>
+      <p className="text-sm text-gray-500">
+        {(file.size / Math.pow(1024, 2)).toFixed(2)} MB
+      </p>
+    </li>
+  ));
+
   return (
     <div className="md:flex-1 mb-3 mx-2 mt-16 lg:mt-0 flex flex-col items-center justify-center border-dashed border-gray-400 border-2 bg-gray-100 p-4">
+      <ul>{files}</ul>
       <div {...getRootProps({ className: "dropzone w-full py-32" })}>
         <input className="h-100" {...getInputProps()} />
         {isDragActive ? (

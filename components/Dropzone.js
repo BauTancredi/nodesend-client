@@ -1,12 +1,11 @@
 import React, { useCallback, useContext } from "react";
 import { useDropzone } from "react-dropzone";
-import clientAxios from "../config/axios";
 import appContext from "../context/app/appContext";
 import AppState from "../context/app/appState";
 
 const Dropzone = () => {
   const AppContext = useContext(appContext);
-  const { showAlert } = AppContext;
+  const { showAlert, uploadFile, loading } = AppContext;
 
   const onDropRejected = () => {
     showAlert(
@@ -19,7 +18,7 @@ const Dropzone = () => {
     const formData = new FormData();
     formData.append("file", acceptedFiles[0]);
 
-    const result = await clientAxios.post("/api/files", formData);
+    uploadFile(formData, acceptedFiles[0].path);
   }, []);
 
   //Extract content from dropzone
@@ -52,13 +51,17 @@ const Dropzone = () => {
         <div className="mt-10 w-full">
           <h4 className="text-2xl font-bold text-center mb-4">Files</h4>
           <ul>{files}</ul>
-          <button
-            type="button"
-            className="bg-blue-700 w-full py-3 rounded-lg text-white my-10 hover:bg-blue-800"
-            onClick={() => createLink()}
-          >
-            Create link
-          </button>
+          {loading ? (
+            <p className="my-10 text-center text-gray-600">Uploading file...</p>
+          ) : (
+            <button
+              type="button"
+              className="bg-blue-700 w-full py-3 rounded-lg text-white my-10 hover:bg-blue-800"
+              onClick={() => createLink()}
+            >
+              Create link
+            </button>
+          )}
         </div>
       ) : (
         <div {...getRootProps({ className: "dropzone w-full py-32" })}>

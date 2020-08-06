@@ -24,7 +24,7 @@ export default (state, action) => {
       return {
         ...state,
         name: action.payload.name,
-        original_name: action.payload.original_name,
+        name_original: action.payload.name_original,
         loading: null,
       };
     case UPLOAD_FILE_ERROR:
@@ -37,6 +37,11 @@ export default (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case CREATE_LINK_SUCCESS:
+      return {
+        ...state,
+        url: action.payload,
       };
     default:
       return state;

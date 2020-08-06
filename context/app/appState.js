@@ -18,8 +18,12 @@ const AppState = ({ children }) => {
   const initialState = {
     message_file: null,
     name: "",
-    original_name: "",
+    name_original: "",
     loading: "",
+    downloads: 1,
+    password: "",
+    author: null,
+    url: "",
   };
 
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -48,7 +52,7 @@ const AppState = ({ children }) => {
 
       dispatch({
         type: UPLOAD_FILE_SUCCESS,
-        payload: { name: result.data.file, original_name: fileName },
+        payload: { name: result.data.file, name_original: fileName },
       });
     } catch (error) {
       dispatch({
@@ -58,15 +62,41 @@ const AppState = ({ children }) => {
     }
   };
 
+  const createLink = async () => {
+    const data = {
+      name: state.name,
+      name_original: state.name_original,
+      downloads: state.downloads,
+      password: state.password,
+      author: state.author,
+    };
+
+    try {
+      const result = await clientAxios.post("/api/links", data);
+
+      dispatch({
+        type: CREATE_LINK_SUCCESS,
+        payload: result.data.msg,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <appContext.Provider
       value={{
         message_file: state.message_file,
         name: state.name,
-        original_name: state.original_name,
+        name_original: state.name_original,
         loading: state.loading,
+        downloads: state.downloads,
+        password: state.password,
+        author: state.author,
+        url: state.url,
         showAlert,
         uploadFile,
+        createLink,
       }}
     >
       {children}

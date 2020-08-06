@@ -5,7 +5,7 @@ import AppState from "../context/app/appState";
 
 const Dropzone = () => {
   const AppContext = useContext(appContext);
-  const { showAlert, uploadFile, loading } = AppContext;
+  const { showAlert, uploadFile, loading, createLink } = AppContext;
 
   const onDropRejected = () => {
     showAlert(
@@ -40,10 +40,6 @@ const Dropzone = () => {
       </p>
     </li>
   ));
-
-  const createLink = () => {
-    console.log("Creating link");
-  };
 
   return (
     <div className="md:flex-1 mb-3 mx-2 mt-16 lg:mt-0 flex flex-col items-center justify-center border-dashed border-gray-400 border-2 bg-gray-100 p-4">

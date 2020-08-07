@@ -13,6 +13,8 @@ import {
   CREATE_LINK_ERROR,
   CREATE_LINK_SUCCESS,
   CLEAN_STATE,
+  ADD_PASSWORD,
+  ADD_DOWNLOADS,
 } from "../../types";
 
 const AppState = ({ children }) => {
@@ -90,6 +92,20 @@ const AppState = ({ children }) => {
     });
   };
 
+  const addPassword = (password) => {
+    dispatch({
+      type: ADD_PASSWORD,
+      payload: password,
+    });
+  };
+
+  const addDownloads = (downloads) => {
+    dispatch({
+      type: ADD_DOWNLOADS,
+      payload: downloads,
+    });
+  };
+
   return (
     <appContext.Provider
       value={{
@@ -105,6 +121,8 @@ const AppState = ({ children }) => {
         uploadFile,
         createLink,
         cleanState,
+        addPassword,
+        addDownloads,
       }}
     >
       {children}

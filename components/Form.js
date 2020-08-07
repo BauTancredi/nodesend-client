@@ -1,25 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import appContext from "../context/app/appContext";
 
 const Form = () => {
+  const AppContext = useContext(appContext);
+  const { addPassword, addDownloads } = AppContext;
+
   const [hasPassword, setHasPassword] = useState(false);
+
   return (
     <div className="w-full mt-20">
       <div>
         <label className="text-lg text-gray-800">Delete after: </label>
-        <select className="appearance-none w-full mt-2 bg-white border border-gray-400 text-black py-3 px-4 pr-8 rounded leading-none focus:outline-none focus:border-gray-500">
-          <option value="" key="" disabled>
+        <select
+          className="appearance-none w-full mt-2 bg-white border border-gray-400 text-black py-3 px-4 pr-8 rounded leading-none focus:outline-none focus:border-gray-500"
+          onChange={(e) => addDownloads(parseInt(e.target.value))}
+        >
+          <option value="0" selected disabled>
             -- Select --
           </option>
-          <option value="1" key="">
+          <option value="1" key="1">
             1 Download
           </option>
-          <option value="5" key="">
+          <option value="5" key="5">
             5 Downloads
           </option>
-          <option value="10" key="">
+          <option value="10" key="10">
             10 Downloads
           </option>
-          <option value="20" key="">
+          <option value="20" key="20">
             20 Downloads
           </option>
         </select>
@@ -39,6 +48,7 @@ const Form = () => {
           <input
             type="password"
             className="appearance-none w-full mt-2 bg-white border border-gray-400 text-black py-3 px-4 pr-8 rounded leading-none focus:outline-none focus:border-gray-500"
+            onChange={(e) => addPassword(e.target.value)}
           />
         ) : null}
       </div>

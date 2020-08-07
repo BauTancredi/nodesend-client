@@ -12,6 +12,7 @@ import {
   UPLOAD_FILE_SUCCESS,
   CREATE_LINK_ERROR,
   CREATE_LINK_SUCCESS,
+  CLEAN_STATE,
 } from "../../types";
 
 const AppState = ({ children }) => {
@@ -19,7 +20,7 @@ const AppState = ({ children }) => {
     message_file: null,
     name: "",
     name_original: "",
-    loading: "",
+    loading: null,
     downloads: 1,
     password: "",
     author: null,
@@ -83,6 +84,12 @@ const AppState = ({ children }) => {
     }
   };
 
+  const cleanState = () => {
+    dispatch({
+      type: CLEAN_STATE,
+    });
+  };
+
   return (
     <appContext.Provider
       value={{
@@ -97,6 +104,7 @@ const AppState = ({ children }) => {
         showAlert,
         uploadFile,
         createLink,
+        cleanState,
       }}
     >
       {children}

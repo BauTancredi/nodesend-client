@@ -1,11 +1,14 @@
 import React, { useCallback, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import appContext from "../context/app/appContext";
-import AppState from "../context/app/appState";
+import authContext from "../context/auth/authContext";
 
 const Dropzone = () => {
   const AppContext = useContext(appContext);
   const { showAlert, uploadFile, loading, createLink } = AppContext;
+
+  const AuthContext = useContext(authContext);
+  const { user, authenticated } = AuthContext;
 
   const onDropRejected = () => {
     showAlert(

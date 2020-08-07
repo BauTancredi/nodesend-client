@@ -28,6 +28,7 @@ export default (state, action) => {
       return {
         ...state,
         user: action.payload,
+        authenticated: true,
       };
 
     case CLEAN_ALERT:

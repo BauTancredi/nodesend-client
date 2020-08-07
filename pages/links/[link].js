@@ -25,7 +25,15 @@ export async function getServerSidePaths() {
 export default ({ link }) => {
   return (
     <Layout>
-      <h1>From [links.js]</h1>
+      <h1 className="text-4xl text-center text-gray-700">Download your file</h1>
+      <div className="flex items-center justify-center mt-10">
+        <a
+          href={`${process.env.backendUrl}/api/files/${link.file}`}
+          className="bg-red-500 text-center px-10 py-3 rounded uppercase font-bold text-white cursor-pointer"
+        >
+          Here
+        </a>
+      </div>
     </Layout>
   );
 };

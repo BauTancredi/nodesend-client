@@ -27,13 +27,15 @@ const Dropzone = () => {
     uploadFile(formData, acceptedFiles[0].path);
   }, []);
 
+  const maxSize = authenticated ? 1000000000000 : 1000000;
+
   //Extract content from dropzone
   const {
     getRootProps,
     getInputProps,
     isDragActive,
     acceptedFiles,
-  } = useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 });
+  } = useDropzone({ onDropAccepted, onDropRejected, maxSize });
 
   const files = acceptedFiles.map((file) => (
     <li

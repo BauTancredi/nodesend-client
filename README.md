@@ -9,15 +9,16 @@ This is the client side of the project which uses Next.js alongside with other d
 
 The project is based on Firefox Send, a webapp for sharing files. The idea is that you can upload files and then generate a downlaod link which you can share. The projects handles authentication in order to give the user more options if they are logged in.
 
-## Dependencies used: 
-    Axios 
-    formik
-    next
-    react 
-    react-dom
-    react-dropzone
-    yup
+You can access a this project [here](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 
+## Dependencies used: 
+axios 
+formik
+next
+react 
+react-dom
+react-dropzone
+yup
 
 ## Getting Started
 

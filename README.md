@@ -30,6 +30,8 @@ npm run dev
 yarn dev
 ```
 
+Open http://localhost:3000 with your browser to see the result.
+
 ## Backend link
 
 You can download the backend for this project [here](https://github.com/BauTancredi/nodesend-server)

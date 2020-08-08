@@ -12,13 +12,13 @@ The project is based on Firefox Send, a webapp for sharing files. The idea is th
 You can access a this project [here](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 
 ## Dependencies used: 
-axios 
-formik
-next
-react 
-react-dom
-react-dropzone
-yup
+* axios 
+* formik
+* next
+* react 
+* react-dom
+* react-dropzone
+* yup
 
 ## Getting Started
 

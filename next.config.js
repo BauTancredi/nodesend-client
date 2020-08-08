@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    backendUrl: "http://localhost:4000",
-    frontendUrl: "http://localhost:3000",
+    backendUrl: "https://dashboard.heroku.com/apps/salty-crag-54070",
+    frontendUrl: "https://admiring-jones-9b5088.netlify.app",
   },
 };

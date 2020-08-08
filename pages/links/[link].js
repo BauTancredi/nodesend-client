@@ -40,7 +40,7 @@ export default ({ link }) => {
     const data = { password };
 
     try {
-      const response = await clientAxios.post(`/api/link/${link.link}`, data);
+      const response = await clientAxios.post(`/api/links/${link.link}`, data);
       setHasPassword(response.data.password);
     } catch (error) {
       showAlert(error.response.data.msg);

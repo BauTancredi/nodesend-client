@@ -11,7 +11,7 @@ import {
   ADD_DOWNLOADS,
 } from "../../types";
 
-export default (state, action) => {
+const appReducer = (state, action) => {
   switch (action.type) {
     case SHOW_ALERT:
       return {
@@ -72,3 +72,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default appReducer;
